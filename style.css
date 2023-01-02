@@ -1,0 +1,446 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;700&display=swap");
+
+:root {
+	--dark-purple: #7c5dfa;
+	--light-purple: #9277ff;
+	--dark-blue: #1e2139;
+	--medium-dark-blue: #252945;
+	--light-grey-blue: #dfe3fa;
+	--dark-grey-blue: #888eb0;
+	--grey-blue: #7e88c3;
+	--black-blue: #0c0e16;
+	--orange: #ec5757;
+	--salmon: #ff9797;
+	--body-bg: #f8f8fb;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 52.5%;
+}
+
+body {
+	font-family: "League Spartan", sans-serif;
+	min-height: 100vh;
+	font-size: 1.6rem;
+	background-color: var(--body-bg);
+	/* padding-bottom: 10rem; */
+}
+
+button {
+	background-color: transparent;
+	border: none;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.margin-helper {
+	margin-bottom: 3rem;
+}
+
+.grey {
+	color: var(--dark-grey-blue);
+}
+
+.flex-helper {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Dark styles */
+
+.dark {
+	color: var(--light-grey-blue);
+	background-color: var(--black-blue);
+}
+
+.dark button {
+	color: var(--light-grey-blue);
+}
+
+/* Navbar styles */
+
+nav {
+	background-color: var(--dark-blue);
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 1.8rem 0;
+	position: relative;
+	padding: 3rem 2rem 3rem 0;
+	margin-bottom: 3rem;
+}
+
+.logo-container {
+	background-color: var(--dark-purple);
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	width: 7rem;
+	justify-content: center;
+	border-top-right-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.profile-pic {
+	width: 3rem;
+	border-radius: 50%;
+}
+
+.small-nav-images {
+	display: flex;
+	align-items: center;
+	gap: 5rem;
+	height: 100%;
+	position: absolute;
+}
+
+.small-nav-images::before {
+	content: "";
+	height: 20px;
+	width: 1px;
+	background-color: var(--grey-blue);
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+	height: 100%;
+}
+
+nav button {
+	background-color: transparent;
+	border: none;
+}
+
+.sun-icon {
+	display: none;
+}
+
+.dark .sun-icon {
+	display: block;
+}
+
+.dark .moon-icon {
+	display: none;
+}
+
+/* Header styles */
+
+header {
+	padding: 0 2rem;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+}
+
+header h1 {
+	margin-bottom: 1rem;
+}
+
+header button {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	font-weight: 700;
+	font-size: 1.8rem;
+}
+
+.header-btns {
+	display: flex;
+	gap: 4rem;
+}
+
+.new-btn {
+	background-color: var(--dark-purple);
+	color: var(--light-grey-blue);
+	padding: 0 1.5rem 0 0.7rem;
+	border-radius: 99px;
+}
+
+.new-btn img {
+	background-color: #fff;
+	padding: 1rem;
+	border-radius: 50%;
+}
+
+.num-invoices {
+	color: var(--dark-grey-blue);
+}
+
+/* No invoices section */
+.no-invoices {
+	display: none;
+}
+
+.no-invoices img {
+	width: 30rem;
+	margin-bottom: 2rem;
+}
+
+.no-invoices h2 {
+	font-size: 3rem;
+	margin-bottom: 3rem;
+}
+
+.no-invoices p {
+	color: var(--dark-grey-blue);
+	font-size: 2rem;
+	padding: 0 3rem;
+	text-align: center;
+}
+
+.no-invoices.show-no-invoices {
+	display: block;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	top: 20%;
+	height: 70vh;
+}
+
+/* Individual invoice styles */
+
+.invoices {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	padding: 0 2rem 8rem;
+}
+
+.invoice {
+	background-color: #fff;
+	padding: 4rem 3rem;
+	border-radius: 6px;
+}
+
+.dark .invoice {
+	background-color: var(--medium-dark-blue);
+}
+
+.invoice > div:first-of-type {
+	display: flex;
+	justify-content: space-between;
+	font-size: 1.8rem;
+	margin-bottom: 2rem;
+}
+
+.invoice > div:last-of-type {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 1.8rem;
+}
+
+.name {
+	color: var(--dark-grey-blue);
+}
+
+.due-date {
+	color: var(--dark-grey-blue);
+	margin-bottom: 1.5rem;
+}
+
+.total {
+	font-weight: bold;
+	font-size: 2.2rem;
+}
+
+.paid,
+.draft,
+.pending {
+	font-weight: bold;
+	text-transform: capitalize;
+	padding: 1rem;
+	width: 12rem;
+	border-radius: 6px;
+	text-align: center;
+	padding: 1.5rem 0;
+}
+
+.paid {
+	color: #33d69f;
+	background-color: #33d6a017;
+}
+
+.pending {
+	color: #ff8f00;
+	background-color: #ff910020;
+}
+
+.draft {
+	background-color: #00000013;
+}
+
+/* Individual invoice page */
+
+/* Back button container styles */
+.back-btn {
+	display: flex;
+	padding: 0 2rem;
+	gap: 3rem;
+	align-items: center;
+	margin-bottom: 5rem;
+	width: fit-content;
+}
+
+.back-btn p {
+	font-size: 2.3rem;
+	font-weight: bold;
+}
+
+.back-btn img {
+	width: 1.3rem;
+}
+
+/* Status container */
+
+.status-container {
+	margin: 0 2rem 3rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #fff;
+	padding: 3rem;
+	border-radius: 6px;
+}
+
+.dark .status-container {
+	background-color: var(--dark-blue);
+}
+
+.status-container p:first-child {
+	color: var(--dark-grey-blue);
+	font-size: 2rem;
+}
+
+/* Details styles */
+
+.invoice-details {
+	padding: 2.5rem 2.5rem 4rem 2.5rem;
+	margin: 0 2rem;
+	border-radius: 6px;
+	background-color: #fff;
+	line-height: 1.2;
+	font-size: 1.9rem;
+}
+
+/* .invoice-details .bold {
+	font-size: 2.3rem;
+} */
+
+.invoice-details h2 {
+	font-weight: normal;
+	font-size: 1.8rem;
+	color: var(--dark-grey-blue);
+	margin-bottom: 1.5rem;
+}
+
+.dark .invoice-details {
+	background-color: var(--dark-blue);
+}
+
+.purchased-items {
+	background-color: var(--body-bg);
+	padding-top: 3rem;
+	border-radius: 6px;
+}
+
+.purchase {
+	padding: 0 2rem;
+	margin-bottom: 2rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.amount-due {
+	padding: 4rem 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: var(--dark-blue);
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	color: #fff;
+}
+
+.client-name {
+	margin-bottom: 1rem;
+}
+
+.dark .amount-due {
+	background-color: var(--black-blue);
+}
+
+.dark .purchased-items {
+	background-color: var(--medium-dark-blue);
+}
+
+.sent-to {
+	margin-bottom: 5rem;
+}
+
+.item {
+	margin-bottom: 1rem;
+}
+
+.final-total {
+	font-size: 2.8rem;
+}
+
+/* Options */
+
+.options {
+	background-color: #fff;
+	margin-top: 8rem;
+	padding: 4rem 2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+}
+
+.dark .options {
+	background-color: var(--dark-blue);
+}
+
+.options button {
+	font-size: 2rem;
+	color: #fff;
+	font-weight: bold;
+}
+
+.edit {
+	background-color: var(--body-bg);
+	color: var(--dark-grey-blue) !important;
+	padding: 1.5rem 3rem;
+	border-radius: 99px;
+}
+
+.dark .edit {
+	color: #fff !important;
+	background-color: var(--medium-dark-blue);
+}
+
+.delete {
+	background-color: var(--orange);
+	padding: 1.5rem 3rem;
+	border-radius: 99px;
+}
+
+.mark-paid {
+	background-color: #7c5dfa;
+	padding: 1.5rem 2rem;
+	border-radius: 99px;
+}

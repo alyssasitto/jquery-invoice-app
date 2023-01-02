@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/style.css" />
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+		<title>Invoice app</title>
+	</head>
+	<body>
+		<div class="nav-container">
+			<nav>
+				<div class="logo-container">
+					<img src="assets/logo.svg" class="site-logo" alt="Site logo" />
+				</div>
+
+				<div class="small-nav-images">
+					<button class="light-dark-btns">
+						<img
+							src="assets/icon-moon.svg"
+							class="moon-icon"
+							alt="Crescent moon icon"
+						/>
+
+						<img src="assets/icon-sun.svg" class="sun-icon" alt="Sun icon" />
+					</button>
+
+					<img
+						src="assets/image-avatar.jpg"
+						class="profile-pic"
+						alt="Profile picture"
+					/>
+				</div>
+			</nav>
+		</div>
+
+		<header>
+			<div>
+				<h1>Invoices</h1>
+				<p class="num-invoices">No invoices</p>
+			</div>
+
+			<div class="header-btns">
+				<button>
+					<p>Filter</p>
+					<img src="assets/icon-arrow-down.svg" alt="Down arrow icon" />
+				</button>
+				<button class="new-btn">
+					<img src="assets/icon-plus.svg" alt="Plus sign icon" />
+					<p>New</p>
+				</button>
+			</div>
+		</header>
+
+		<section class="no-invoices">
+			<img
+				src="assets/illustration-empty.svg"
+				alt="Illustration of a woman talking into a megaphone."
+			/>
+			<h2>There is nothing here</h2>
+			<p>Create an invoice by clicking the New button and get started</p>
+		</section>
+
+		<section class="invoices"></section>
+
+		<script src="index.js"></script>
+	</body>
+</html>

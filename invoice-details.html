@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/style.css" />
+		<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+		<title>Invoice app</title>
+	</head>
+	<body>
+		<div class="nav-container">
+			<nav>
+				<div class="logo-container">
+					<img src="assets/logo.svg" class="site-logo" alt="Site logo" />
+				</div>
+
+				<div class="small-nav-images">
+					<button class="light-dark-btns">
+						<img
+							src="assets/icon-moon.svg"
+							class="moon-icon"
+							alt="Crescent moon icon"
+						/>
+
+						<img src="assets/icon-sun.svg" class="sun-icon" alt="Sun icon" />
+					</button>
+
+					<img
+						src="assets/image-avatar.jpg"
+						class="profile-pic"
+						alt="Profile picture"
+					/>
+				</div>
+			</nav>
+		</div>
+
+		<button class="back-btn">
+			<img src="assets/icon-arrow-left.svg" alt="Left arrow icon" />
+			<p>Go back</p>
+		</button>
+
+		<div class="status-container">
+			<p>Status</p>
+		</div>
+
+		<section class="invoice-details">
+			<div class="invoice-header"></div>
+			<div class="flex-helper">
+				<div>
+					<div class="invoice-date margin-helper">
+						<h2>Invoice Date</h2>
+					</div>
+					<div class="payment-date margin-helper">
+						<h2>Payment Date</h2>
+					</div>
+				</div>
+
+				<div class="bill-to">
+					<h2>Bill To</h2>
+				</div>
+			</div>
+
+			<div class="sent-to">
+				<h2>Sent to</h2>
+			</div>
+
+			<div class="purchased-items"></div>
+		</section>
+
+		<div class="options">
+			<button class="edit">Edit</button>
+			<button class="delete">Delete</button>
+			<button class="mark-paid">Mark as Paid</button>
+		</div>
+
+		<script src="index.js"></script>
+	</body>
+</html>
