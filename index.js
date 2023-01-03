@@ -56,7 +56,9 @@ $.getJSON("data.json", (data) => {
 	});
 });
 
-// Invoice details js
+////////////////////////////////////////////////////////////////////////////////
+
+// Invoice details page js
 
 // Back button functionality
 $(".back-btn").click(() => {
@@ -122,3 +124,14 @@ $(".purchased-items").append(`
 	 <p>Amount Due</p>
 	 <p class="bold final-total">$${invoice[0].total.toLocaleString()}</p>
   </div>`);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+// Edit invoice page js
+
+// Edit button functionality
+$(".edit").click(() => {
+	$(window.location).prop("href", "edit-invoice.html");
+});
+
+$(".form-container h1").html(`Edit <span class=grey>#</span>${invoice[0].id}`);

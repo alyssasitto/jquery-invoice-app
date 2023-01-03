@@ -290,7 +290,7 @@ header button {
 	padding: 0 2rem;
 	gap: 3rem;
 	align-items: center;
-	margin-bottom: 5rem;
+	margin-bottom: 4rem;
 	width: fit-content;
 }
 
@@ -443,4 +443,58 @@ header button {
 	background-color: #7c5dfa;
 	padding: 1.5rem 2rem;
 	border-radius: 99px;
+}
+
+/* Form styles */
+
+.form-container {
+	padding: 0 1.5rem;
+}
+
+.form-container h1 {
+	margin-bottom: 3rem;
+}
+
+form h2 {
+	color: var(--dark-purple);
+	margin-bottom: 3rem;
+	font-size: 1.9rem;
+}
+
+form label {
+	color: var(--dark-grey-blue);
+	font-size: 1.8rem;
+	margin-bottom: 1.5rem;
+}
+
+input,
+select {
+	padding: 1.5rem 1rem;
+	margin-bottom: 3rem;
+	border: 2px solid var(--light-grey-blue);
+	border-radius: 6px;
+}
+
+.dark input,
+.dark select {
+	color: #fff;
+	background-color: var(--medium-dark-blue);
+	border: none;
+}
+
+.bill-from {
+	margin-bottom: 3rem;
+}
+
+.input {
+	display: flex;
+	flex-direction: column;
+}
+
+.edit-form .flex-helper {
+	gap: 2rem;
+}
+
+.flex-helper input {
+	width: 100%;
 }
