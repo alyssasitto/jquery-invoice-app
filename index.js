@@ -205,3 +205,33 @@ $(".edit-form input[name=description]").attr(
 	"placeholder",
 	invoice[0].description
 );
+
+// Make item divs
+$.each(invoice[0].items, (i, item) => {
+	console.log(item.name);
+	$(".items").append(`<div class=item-container>
+	<div class=input>
+	<label for=item-name>Item Name</label>
+	<input type=text name=item-name placeholder="${item.name}"/>
+	</div>
+
+	<div class=item-flex>
+	<div class=input>
+<label for=qty>Qty.</label>
+<input type=number name=qty placeholder="${item.quantity}" />
+	</div>
+
+	<div class=input>
+	<label for=price>Price</label>
+	<input type=number name=price placeholder="${item.price.toLocaleString()}"/>
+	</div>
+
+	<div class=input>
+	<label for=item-total>Total</label>
+	<input type=number class=input-helper name=item-total placeholder="${item.total.toLocaleString()}"/>
+	</div>
+
+	<button><img src=assets/icon-delete.svg></img></button>
+	</div>
+	</div>`);
+});
