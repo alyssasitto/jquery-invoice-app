@@ -22,11 +22,11 @@
 
 html {
 	font-size: 52.5%;
+	position: relative;
 }
 
 body {
 	font-family: "League Spartan", sans-serif;
-	min-height: 100vh;
 	font-size: 1.6rem;
 	background-color: var(--body-bg);
 	/* padding-bottom: 10rem; */
@@ -473,13 +473,22 @@ select {
 	margin-bottom: 3rem;
 	border: 2px solid var(--light-grey-blue);
 	border-radius: 6px;
+	font-weight: bold;
 }
 
 .dark input,
 .dark select {
 	color: #fff;
 	background-color: var(--medium-dark-blue);
-	border: none;
+	border: 2px solid transparent;
+}
+
+::placeholder {
+	color: var(--black-blue);
+}
+
+.dark ::placeholder {
+	color: #fff;
 }
 
 .bill-from {
@@ -491,10 +500,21 @@ select {
 	flex-direction: column;
 }
 
+/* Edit page */
+
+.edit-page {
+	padding-bottom: 5rem;
+}
+
 .edit-form .flex-helper {
 	gap: 2rem;
 }
 
 .flex-helper input {
 	width: 100%;
+}
+
+.edit-btn-options {
+	position: absolute;
+	bottom: 0;
 }

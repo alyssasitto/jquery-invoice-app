@@ -135,3 +135,73 @@ $(".edit").click(() => {
 });
 
 $(".form-container h1").html(`Edit <span class=grey>#</span>${invoice[0].id}`);
+
+// Set sender street placeholder
+$(".edit-form input[name=street-address]").attr(
+	"placeholder",
+	invoice[0].senderAddress.street
+);
+
+// Set sender city placeholder
+$(".edit-form input[name=city]").attr(
+	"placeholder",
+	invoice[0].senderAddress.city
+);
+
+// Set sender post code placeholder
+$(".edit-form input[name=post-code]").attr(
+	"placeholder",
+	invoice[0].senderAddress.postCode
+);
+
+// Set sender country placeholder
+$(
+	`.edit-form select[name=country] option[value="${invoice[0].senderAddress.country}"]`
+).prop("selected", true);
+
+// Set client name placeholder
+$(".edit-form input[name=client-name]").attr(
+	"placeholder",
+	invoice[0].clientName
+);
+
+// Set client email placeholder
+$(".edit-form input[name=client-email]").attr(
+	"placeholder",
+	invoice[0].clientEmail
+);
+
+// Set client street placeholder
+$(".edit-form input[name=client-street]").attr(
+	"placeholder",
+	invoice[0].clientAddress.street
+);
+
+// Set client city placeholder
+$(".edit-form input[name=client-city]").attr(
+	"placeholder",
+	invoice[0].clientAddress.city
+);
+
+// Set client post code placeholder
+$(".edit-form input[name=client-post-code]").attr(
+	"placeholder",
+	invoice[0].clientAddress.postCode
+);
+
+// Set client country placeholder
+$(
+	`.edit-form select[name=client-country] option[value="${invoice[0].clientAddress.country}"]`
+).prop("selected", true);
+
+// Set payment terms
+$(".edit-form input[name=payment-terms]").attr(
+	"placeholder",
+	`Net ${invoice[0].paymentTerms} Days`
+);
+
+// Set product description placeholder
+$(".edit-form input[name=description]").attr(
+	"placeholder",
+	invoice[0].description
+);
