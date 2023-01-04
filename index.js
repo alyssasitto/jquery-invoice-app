@@ -13,7 +13,9 @@ $("body").addClass(localStorage.getItem("background-state"));
 $(".new-btn").click((e) => {});
 
 $.getJSON("data.json", (data) => {
-	localStorage.setItem("data", JSON.stringify(data));
+	if (!localStorage.getItem("data")) {
+		localStorage.setItem("data", JSON.stringify(data));
+	}
 
 	const storedData = JSON.parse(localStorage.getItem("data"));
 
@@ -136,79 +138,99 @@ $(".edit").click(() => {
 
 $(".form-container h1").html(`Edit <span class=grey>#</span>${invoice[0].id}`);
 
-// Set sender street placeholder
-$(".edit-form input[name=street-address]").attr(
-	"placeholder",
-	invoice[0].senderAddress.street
-);
+const senderStreet = $(".edit-form input[name=street-address]");
+const senderCity = $(".edit-form input[name=city]");
+const senderPostCode = $(".edit-form input[name=post-code]");
+const senderCountry = $(".edit-form select[name=country]").val();
 
-// Set sender city placeholder
-$(".edit-form input[name=city]").attr(
-	"placeholder",
-	invoice[0].senderAddress.city
-);
+const clientName = $(".edit-form input[name=client-name]");
+const clientEmail = $(".edit-form input[name=client-email]");
+const clientStreet = $(".edit-form input[name=client-street]");
+const clientCity = $(".edit-form input[name=client-city]");
+const clientPostCode = $(".edit-form input[name=client-post-code]");
+const clientCountry = $(".edit-form select[name=client-country]");
 
-// Set sender post code placeholder
-$(".edit-form input[name=post-code]").attr(
-	"placeholder",
-	invoice[0].senderAddress.postCode
-);
+const paymentTerms = $(".edit-form input[name=payment-terms]");
+const description = $(".edit-form input[name=description]");
+const date = $(".edit-form input[name=date]");
 
-// Set sender country placeholder
+// Set sender street
+senderStreet.attr({
+	placeholder: invoice[0].senderAddress.street,
+	value: invoice[0].senderAddress.street,
+});
+
+// Set sender city
+senderCity.attr({
+	placeholder: invoice[0].senderAddress.city,
+	value: invoice[0].senderAddress.city,
+});
+
+// Set sender post code
+senderPostCode.attr({
+	placeholder: invoice[0].senderAddress.postCode,
+	value: invoice[0].senderAddress.postCode,
+});
+
+// Set sender country
 $(
 	`.edit-form select[name=country] option[value="${invoice[0].senderAddress.country}"]`
 ).prop("selected", true);
 
-// Set client name placeholder
-$(".edit-form input[name=client-name]").attr(
-	"placeholder",
-	invoice[0].clientName
-);
+// Set client name
+clientName.attr({
+	placeholder: invoice[0].clientName,
+	value: invoice[0].clientName,
+});
 
-// Set client email placeholder
-$(".edit-form input[name=client-email]").attr(
-	"placeholder",
-	invoice[0].clientEmail
-);
+// Set client email
+clientEmail.attr({
+	placeholder: invoice[0].clientEmail,
+	value: invoice[0].clientEmail,
+});
 
-// Set client street placeholder
-$(".edit-form input[name=client-street]").attr(
-	"placeholder",
-	invoice[0].clientAddress.street
-);
+// Set client street
+clientStreet.attr({
+	placeholder: invoice[0].clientAddress.street,
+	value: invoice[0].clientAddress.street,
+});
 
-// Set client city placeholder
-$(".edit-form input[name=client-city]").attr(
-	"placeholder",
-	invoice[0].clientAddress.city
-);
+// Set client city
+clientCity.attr({
+	placeholder: invoice[0].clientAddress.city,
+	value: invoice[0].clientAddress.city,
+});
 
-// Set client post code placeholder
-$(".edit-form input[name=client-post-code]").attr(
-	"placeholder",
-	invoice[0].clientAddress.postCode
-);
+// Set client post code
+clientPostCode.attr({
+	placeholder: invoice[0].clientAddress.postCode,
+	value: invoice[0].clientAddress.postCode,
+});
 
-// Set client country placeholder
+// Set client country default
 $(
 	`.edit-form select[name=client-country] option[value="${invoice[0].clientAddress.country}"]`
-).prop("selected", true);
+).attr("selected", true);
 
 // Set payment terms
-$(".edit-form input[name=payment-terms]").attr(
-	"placeholder",
-	`Net ${invoice[0].paymentTerms} Days`
-);
+paymentTerms.attr({
+	placeholder: `Net ${invoice[0].paymentTerms} Days`,
+	value: `Net ${invoice[0].paymentTerms} Days`,
+});
 
-// Set product description placeholder
-$(".edit-form input[name=description]").attr(
-	"placeholder",
-	invoice[0].description
-);
+// Set product description
+description.attr({
+	placeholder: invoice[0].description,
+	value: invoice[0].description,
+});
+
+// Set date
+date.attr({
+	value: invoice[0].createdAt,
+});
 
 // Make item divs
 $.each(invoice[0].items, (i, item) => {
-	console.log(item.name);
 	$(".items").append(`<div class=item-container>
 	<div class=input>
 	<label for=item-name>Item Name</label>
@@ -231,7 +253,64 @@ $.each(invoice[0].items, (i, item) => {
 	<input type=number class=input-helper name=item-total placeholder="${item.total.toLocaleString()}"/>
 	</div>
 
-	<button><img src=assets/icon-delete.svg></img></button>
+	<button class=delete-item><img src=assets/icon-delete.svg></img></button>
 	</div>
 	</div>`);
+});
+
+// Cancel button functionality
+$(".cancel-btn").click((e) => {
+	e.preventDefault();
+	history.back();
+});
+
+// Save changes button functionlity
+$(".save-btn").click((e) => {
+	e.preventDefault();
+
+	const newInvoice = {
+		clientAddress: {
+			city: clientCity.val(),
+			country: clientCountry.val(),
+			postCode: clientPostCode.val(),
+			street: clientStreet.val(),
+		},
+		clientEmail: clientEmail.val(),
+		clientName: clientName.val(),
+		createdAt: date.val(),
+		description: description.val(),
+		id: invoice[0].id,
+		items: invoice[0].items,
+		paymentDue: invoice[0].paymentDue,
+		paymentTerms: paymentTerms.val(),
+		senderAddress: {
+			city: senderCity.val(),
+			country: senderCountry,
+			postCode: senderPostCode.val(),
+			street: senderStreet.val(),
+		},
+		status: invoice[0].status,
+		total: invoice[0].total,
+	};
+
+	const invoices = JSON.parse(localStorage.getItem("data"));
+
+	let index;
+
+	$.each(invoices, (i, item) => {
+		if (item.id === invoice[0].id) {
+			index = i;
+		}
+	});
+
+	invoices.splice(index, 1, newInvoice);
+
+	localStorage.setItem("data", JSON.stringify(invoices));
+});
+
+// Delete item functionality
+
+$(".delete-item").click((e) => {
+	e.preventDefault();
+	console.log("hi");
 });
