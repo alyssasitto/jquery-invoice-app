@@ -27,8 +27,6 @@ $.getJSON("data.json", (data) => {
 		$(".num-invoices").html(`${storedData.length} invoices`);
 
 		$.each(storedData, (i, item) => {
-			console.log(item);
-
 			$(".invoices").append(`
 		<div class="invoice ${item.id}">
 
@@ -214,8 +212,8 @@ $(
 
 // Set payment terms
 paymentTerms.attr({
-	placeholder: `Net ${invoice[0].paymentTerms} Days`,
-	value: `Net ${invoice[0].paymentTerms} Days`,
+	placeholder: invoice[0].paymentTerms,
+	value: invoice[0].paymentTerms,
 });
 
 // Set product description
@@ -253,9 +251,16 @@ $.each(invoice[0].items, (i, item) => {
 	<input type=number class=input-helper name=item-total placeholder="${item.total.toLocaleString()}"/>
 	</div>
 
-	<button class=delete-item><img src=assets/icon-delete.svg></img></button>
+	<button class=delete-item value=${i}><img src=assets/icon-delete.svg></img></button>
 	</div>
-	</div>`);
+	</div`);
+});
+
+const items = $(".item-container");
+$.each(items, (i, item) => {
+	console.log(item);
+	const name = $(item).children();
+	console.log(name);
 });
 
 // Cancel button functionality
@@ -263,6 +268,8 @@ $(".cancel-btn").click((e) => {
 	e.preventDefault();
 	history.back();
 });
+
+let index;
 
 // Save changes button functionlity
 $(".save-btn").click((e) => {
@@ -295,8 +302,6 @@ $(".save-btn").click((e) => {
 
 	const invoices = JSON.parse(localStorage.getItem("data"));
 
-	let index;
-
 	$.each(invoices, (i, item) => {
 		if (item.id === invoice[0].id) {
 			index = i;
@@ -310,7 +315,78 @@ $(".save-btn").click((e) => {
 
 // Delete item functionality
 
-$(".delete-item").click((e) => {
+$(".delete-item").click(function (e) {
 	e.preventDefault();
-	console.log("hi");
+
+	const value = $(this).val();
+
+	const items = invoice[0].items;
+	items.splice(value, 1);
+
+	const invoices = JSON.parse(localStorage.getItem("data"));
+
+	invoices.splice(index, 1, invoice[0]);
+	localStorage.setItem("data", JSON.stringify(invoices));
+
+	window.location.reload();
 });
+
+// Delete invoice functionality
+const deleteBtn = $(".delete");
+
+const invoiceId = localStorage.getItem("invoice");
+
+deleteBtn.click(() => {
+	$("body").addClass("open-modal");
+	$(".invoice-details-page").append(`<div class=delete-modal>
+	<h2>Confirm Deletion</h2>
+	<p class=grey>Are you sure you want to delete invoice #${invoiceId}? This action cannot be undone.</p>
+	<div class=delete-modal-btns>
+<button class=modal-cancel-btn>Cancel</button>
+<button class=modal-delete-btn>Delete</button>
+	</div>
+	</div>`);
+
+	$(".modal-cancel-btn").click(() => {
+		$("body").removeClass("open-modal");
+
+		$(".delete-modal").remove();
+	});
+
+	$(".modal-delete-btn").click(() => {
+		$("body").removeClass("open-modal");
+		$(".delete-modal").remove();
+
+		const id = localStorage.getItem("invoice");
+		const invoices = JSON.parse(localStorage.getItem("data"));
+		let index;
+
+		$.each(invoices, (i, item) => {
+			if (item.id === id) {
+				index = i;
+			}
+		});
+
+		invoices.splice(index, 1);
+
+		localStorage.setItem("data", JSON.stringify(invoices));
+
+		$(window.location).prop("href", "index.html");
+	});
+});
+
+// deleteBtn.click(() => {
+// 	const id = localStorage.getItem("invoice");
+// 	const invoices = JSON.parse(localStorage.getItem("data"));
+// 	let index;
+
+// 	$.each(invoices, (i, item) => {
+// 		if (item.id === id) {
+// 			index = i;
+// 		}
+// 	});
+
+// 	invoices.splice(index, 1);
+
+// 	localStorage.setItem("data", JSON.stringify(invoices));
+// });
